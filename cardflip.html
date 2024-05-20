@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Card Flip</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin-top: 150px;
+        }
+
+        section {
+            width: 600px;
+            height: 250px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card>div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .front,
+        .back {
+            display: flex;
+        }
+
+        .front {
+            background-color: white;
+            flex-direction: row;
+        }
+
+        .back {
+            background-color: rgb(69, 119, 69);
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(180deg);
+            color: white;
+            font-size: 24px;
+        }
+
+        .photo {
+            background-image: url(assets/hotel.jpg);
+            background-size: cover;
+            background-position: center;
+            width: 50%;
+        }
+
+        h2 {
+            font-size: 24px;
+            line-height: 120%;
+            margin: 0px;
+        }
+
+        p {
+            line-height: 150%;
+            font-size: 14px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            width: 50%;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .location {
+            color: grey;
+        }
+
+        button {
+            background-color: rgb(69, 119, 69);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="card">
+            <div class="front">
+                <div class="photo"></div>
+                <div class="info">
+                    <h2>Taj Hotel</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus rerum corporis hic quaerat
+                        maiores dolore pariatur fuga ea, amet placeat.</p>
+                    <div class="details">
+                        <div class="location">Bangalore, Karnataka</div>
+                        <button id="bookButton">Book</button>
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                Booking Successful
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('bookButton').addEventListener('click', function () {
+            const card = document.querySelector('.card');
+            card.classList.add('flipped');
+            setTimeout(() => {
+                card.classList.remove('flipped');
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
